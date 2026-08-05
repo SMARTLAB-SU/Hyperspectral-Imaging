@@ -1,0 +1,27 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large compiled binaries, specifications, and installers
+*.exe
+*.spec
+HyperspectralImaging_Data/
+
+# IDE configurations
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary recordings or cache files
+*.avi
+*.mp4
+*.log
+temp_write_*
+temp_read_*
+hsi_temp_record.avi
+hsi_temp_record_orig.avi
