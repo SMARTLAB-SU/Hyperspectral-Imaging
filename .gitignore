@@ -25,3 +25,5 @@ temp_write_*
 temp_read_*
 hsi_temp_record.avi
 hsi_temp_record_orig.avi
+*.exe 
+cr_weights/ 
