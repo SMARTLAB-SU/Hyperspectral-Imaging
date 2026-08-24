@@ -1,23 +1,75 @@
-# Python cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
-# Large compiled binaries, specifications, and installers
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller / Executables / Specs / Installers
 *.exe
 *.spec
+*.manifest
 HyperspectralImaging_Data/
+App/exe/
+cr_weights/
 
-# IDE configurations
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE & Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# OS-specific files
+# OS specific files
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Temporary recordings or cache files
+# Temporary recordings, logs & cache files
 *.avi
 *.mp4
 *.log
@@ -25,5 +77,3 @@ temp_write_*
 temp_read_*
 hsi_temp_record.avi
 hsi_temp_record_orig.avi
-*.exe 
-cr_weights/ 
