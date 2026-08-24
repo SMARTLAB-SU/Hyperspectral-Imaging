@@ -1,14 +1,4 @@
 @echo off
-:: Navigate to the directory of this script
-cd /d "%~dp0"
-
-echo Starting Hyperspectral Imaging Application...
-
-if exist "..\exe\HyperspectralImaging.exe" (
-    start "" "..\exe\HyperspectralImaging.exe"
-) else if exist "..\Source_Code\Py\desktop_app\main.py" (
-    python "..\Source_Code\Py\desktop_app\main.py"
-) else (
-    echo Executable or main script not found.
-    pause
-)
+:: Launch_App.bat - Opens Google Drive download link for Launch_App script
+echo Opening Launch_App.bat download link...
+start "" "https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link"

@@ -4,9 +4,11 @@ Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/H
 
 ## 📥 Download & Launch Guide
 
+- 🔗 **[Click Here to Download & Run Launch_App.bat (Google Drive)](https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run HyperspectralImaging.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run HyperspectralImaging_Setup.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+- 📄 **[Launch_App.bat Download Guide](./App/ISS/Download_Launch_Bat_Link.md)**
 - 📄 **[Launch_App.sh Download Guide](./App/ISS/Download_Launch_Sh_Link.md)**
 - 📄 **[App Executable Readme](./App/exe/README.md)**
 - ⚡ **[Launch Instructions (BAT & SH)](./App/ISS/Launch_App_Instructions.md)**
@@ -35,7 +37,8 @@ Hyperspectral-Imaging/
 │   │   ├── Launch_App.sh
 │   │   ├── README.md
 │   │   ├── Launch_App_Instructions.md
-│   │   └── Download_Launch_Sh_Link.md
+│   │   ├── Download_Launch_Sh_Link.md
+│   │   └── Download_Launch_Bat_Link.md
 │   └── Source_Code/
 │       ├── Py/
 │       │   ├── desktop_app/
