@@ -1,12 +1,9 @@
-# Portable Application Executable (`HyperspectralImaging.exe`)
+# Download & Run `HyperspectralImaging.exe`
 
-`HyperspectralImaging.exe` is the portable binary executable of the Hyperspectral Imaging desktop software.
+Click the link below to download and execute `HyperspectralImaging.exe`:
 
-## Direct Links & Instructions
+🔗 **[Click Here to Download & Run HyperspectralImaging.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
 
-- **Setup Installer**: 🔗 **[Download Setup Executable (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
-- **Portable Binary File**: Located at [`App/exe/HyperspectralImaging.exe`](./HyperspectralImaging.exe)
-
-## Execution Instructions
-1. Double-click `HyperspectralImaging.exe` to run the application directly.
-2. Ensure camera hardware and dependencies are connected.
+## Instructions
+1. Click the link above to open the Google Drive file page.
+2. Download `HyperspectralImaging.exe` and double-click to execute the application.

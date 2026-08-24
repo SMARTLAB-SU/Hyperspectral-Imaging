@@ -4,10 +4,12 @@ Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/H
 
 ## 📥 Download & Launch Guide
 
-- 🔗 **[Download Setup Executable (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)** — `HyperspectralImaging_Setup.exe`
+- 🔗 **[Click Here to Download & Run HyperspectralImaging.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+- 🔗 **[Click Here to Download & Run HyperspectralImaging_Setup.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+- 📄 **[App Executable Readme](./App/exe/README.md)**
+- 📄 **[App Executable Link Guide](./App/exe/Download_App_Link.md)**
 - 📄 **[Setup Download Reference](./App/exe/Download_Setup_Link.md)**
-- 📄 **[Application Executable Guide](./App/exe/Download_App_Link.md)** — `HyperspectralImaging.exe`
-- ⚡ **[Launch Instructions (BAT & SH)](./App/ISS/Launch_App_Instructions.md)** — `Launch_App.bat` & `Launch_App.sh`
+- ⚡ **[Launch Instructions (BAT & SH)](./App/ISS/Launch_App_Instructions.md)**
 
 ---
 
