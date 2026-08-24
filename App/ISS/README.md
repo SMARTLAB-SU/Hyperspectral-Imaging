@@ -4,8 +4,10 @@ This directory contains installer script definitions and launcher shortcuts for 
 
 ## 🚀 Direct Clickable Download & Execution Links
 
+- 🔗 **[Click Here to Download & Open setup.iss (Google Drive)](https://drive.google.com/file/d/11-p6E9BVMvNhJeK_7jE_t6iDNU0nBjtn/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.bat (Google Drive)](https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
+- 📄 **[setup.iss Link Guide](./Download_Setup_Iss_Link.md)**
 - 📄 **[Launch_App.bat Link Guide](./Download_Launch_Bat_Link.md)**
 - 📄 **[Launch_App.sh Link Guide](./Download_Launch_Sh_Link.md)**
 - 📄 **[Launch Script Instructions](./Launch_App_Instructions.md)**

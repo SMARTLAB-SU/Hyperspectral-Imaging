@@ -4,10 +4,12 @@ Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/H
 
 ## 📥 Download & Launch Guide
 
+- 🔗 **[Click Here to Download & Open setup.iss (Google Drive)](https://drive.google.com/file/d/11-p6E9BVMvNhJeK_7jE_t6iDNU0nBjtn/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.bat (Google Drive)](https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run HyperspectralImaging.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run HyperspectralImaging_Setup.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+- 📄 **[setup.iss Download Guide](./App/ISS/Download_Setup_Iss_Link.md)**
 - 📄 **[Launch_App.bat Download Guide](./App/ISS/Download_Launch_Bat_Link.md)**
 - 📄 **[Launch_App.sh Download Guide](./App/ISS/Download_Launch_Sh_Link.md)**
 - 📄 **[App Executable Readme](./App/exe/README.md)**
@@ -38,7 +40,8 @@ Hyperspectral-Imaging/
 │   │   ├── README.md
 │   │   ├── Launch_App_Instructions.md
 │   │   ├── Download_Launch_Sh_Link.md
-│   │   └── Download_Launch_Bat_Link.md
+│   │   ├── Download_Launch_Bat_Link.md
+│   │   └── Download_Setup_Iss_Link.md
 │   └── Source_Code/
 │       ├── Py/
 │       │   ├── desktop_app/
