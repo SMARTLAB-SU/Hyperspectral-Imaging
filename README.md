@@ -2,9 +2,14 @@
 
 Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/Hyperspectral-Imaging)
 
+## 📊 Kaggle Datasets
+
+- 🌿 **[Plant Disease Detection Kaggle Dataset](https://www.kaggle.com/datasets/vedikapangavhane/plant-disease-detection-kaggle?select=valid)**
+- ⚖️ **[Balanced Dataset](https://www.kaggle.com/datasets/vedikapangavhane/balanced-dataset)**
+- ✂️ **[Splitted Dataset](https://www.kaggle.com/datasets/vedikapangavhane/splitted-dataset)**
+
 ## 📥 Download & Launch Guide
 
-- 🔗 **[Click Here to Download & Open setup.iss (Google Drive)](https://drive.google.com/file/d/11-p6E9BVMvNhJeK_7jE_t6iDNU0nBjtn/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.bat (Google Drive)](https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
 - 🔗 **[Click Here to Download & Run HyperspectralImaging.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
@@ -24,7 +29,8 @@ Hyperspectral-Imaging/
 │
 ├── Dataset/
 │   ├── Readme.md
-│   └── Report.md
+│   ├── Report.md
+│   └── Kaggle_Datasets.md
 │
 ├── App/
 │   ├── exe/
@@ -51,8 +57,6 @@ Hyperspectral-Imaging/
 │           ├── sanjivani.png
 │           ├── weight.npz
 │           ├── cr_weights/
-│           ├── Launch_App.bat
-│           ├── Launch_App.sh
 │           ├── HyperspectralImaging.spec
 │           └── HyperspectralImaging_Data/
 │
