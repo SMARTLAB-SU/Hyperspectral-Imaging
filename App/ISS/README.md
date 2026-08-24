@@ -2,9 +2,13 @@
 
 This directory contains installer script definitions and launcher shortcuts for the Hyperspectral Imaging application.
 
-## Files & Launchers
+## 🚀 Direct Clickable Download & Execution Links
 
-- **`setup.iss`**: Inno Setup compilation script used to build `HyperspectralImaging_Setup.exe`.
-- **`Launch_App.bat`**: Windows Command Prompt batch script to launch the application.
-- **`Launch_App.sh`**: Linux/macOS shell script to launch the application.
+- 🔗 **[Click Here to Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
+- 📄 **[Launch_App.sh Link Guide](./Download_Launch_Sh_Link.md)**
 - 📄 **[Launch Script Instructions](./Launch_App_Instructions.md)**
+
+## Included Files
+- `setup.iss`: Inno Setup compilation script.
+- `Launch_App.bat`: Windows batch launcher script.
+- `Launch_App.sh`: Shell script executable launcher.

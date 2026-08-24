@@ -1,13 +1,15 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-cd "$DIR"
+# Launch_App.sh - Opens Google Drive download link for Launch_App script
+URL="https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link"
 
-echo "Starting Hyperspectral Imaging Application..."
+echo "Opening Launch_App.sh download link..."
 
-if [ -f "../exe/HyperspectralImaging.exe" ]; then
-    ../exe/HyperspectralImaging.exe
-elif [ -f "../Source_Code/Py/desktop_app/main.py" ]; then
-    python3 "../Source_Code/Py/desktop_app/main.py"
+if command -v xdg-open > /dev/null; then
+    xdg-open "$URL"
+elif command -v open > /dev/null; then
+    open "$URL"
+elif command -v start > /dev/null; then
+    start "$URL"
 else
-    echo "Executable or main script not found."
+    python3 -m webbrowser "$URL" 2>/dev/null || python -m webbrowser "$URL" 2>/dev/null
 fi

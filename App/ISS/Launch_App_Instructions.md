@@ -2,11 +2,15 @@
 
 Quick reference and execution guide for launching the Hyperspectral Imaging application.
 
-## Launch Options
+## Clickable Download Links
+
+- 🔗 **[Download & Run Launch_App.sh (Google Drive)](https://drive.google.com/file/d/1r98-Xi5oIY5FQlEpG-3-fmzJGQVb_Eqc/view?usp=drive_link)**
+- 🔗 **[Download & Run HyperspectralImaging_Setup.exe (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+
+## Local Execution Options
 
 ### Windows (`Launch_App.bat`)
 - Double-click [`Launch_App.bat`](./Launch_App.bat) in Windows File Explorer.
-- The script automatically launches `HyperspectralImaging.exe` or falls back to Python execution if needed.
 
 ### Linux / macOS (`Launch_App.sh`)
 - Run from terminal:
@@ -14,6 +18,4 @@ Quick reference and execution guide for launching the Hyperspectral Imaging appl
   chmod +x Launch_App.sh
   ./Launch_App.sh
   ```
-
-## Direct Setup Download
-- 🔗 **[Download Setup Executable (Google Drive)](https://drive.google.com/file/d/1HoCol66_ExuojPXvfUXJMjDM9vCpZ0zL/view?usp=drive_link)**
+  Executing `Launch_App.sh` opens the Google Drive download page directly.
