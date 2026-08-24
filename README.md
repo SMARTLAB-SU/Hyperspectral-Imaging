@@ -2,14 +2,6 @@
 
 Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/Hyperspectral-Imaging)
 
-## 📥 Download Setup Executable
-
-[![Download Setup](https://img.shields.to/badge/Download-HyperspectralImaging__Setup.exe-blue?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/18CjDtK030_QoAcgeAt0OfehtbsZY7lui/view?usp=drive_link)
-
-👉 **[Click here to download HyperspectralImaging_Setup.exe from Google Drive](https://drive.google.com/file/d/18CjDtK030_QoAcgeAt0OfehtbsZY7lui/view?usp=drive_link)**
-
----
-
 ## Repository Structure
 
 ```
@@ -22,8 +14,7 @@ Hyperspectral-Imaging/
 ├── App/
 │   ├── exe/
 │   │   ├── HyperspectralImaging.exe
-│   │   ├── HyperspectralImaging_Setup.exe
-│   │   └── README.md
+│   │   └── HyperspectralImaging_Setup.exe
 │   ├── ISS/
 │   │   └── setup.iss
 │   └── Source_Code/
