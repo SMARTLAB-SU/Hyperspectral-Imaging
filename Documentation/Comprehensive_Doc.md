@@ -1,44 +1,168 @@
-# Hyperspectral Imaging System - User Manual
+# 📚 Spectrum-Aided Vision Enhancer (SAVE) & Hyperspectral Imaging System — Comprehensive Documentation
 
-This manual provides detailed instructions on how to set up, operate, and configure the **Hyperspectral Imaging System** desktop application.
-
----
-
-## 1. System Overview
-The Hyperspectral Imaging System reconstructs high-dimensional hyperspectral bands from a standard RGB camera sensor in real-time. It applies color reproduction algorithms to highlight specific wavelengths of light, making it suitable for diagnostic visualization (e.g., biological tissue analysis).
+This document provides a comprehensive technical, mathematical, and operational guide for the **Spectrum-Aided Vision Enhancer (SAVE)** and **Hyperspectral Imaging System**. It covers the theoretical foundation, spectral reconstruction algorithm, color calibration matrices, narrow-band imaging (NBI) simulation, quantitative performance evaluation (SSIM, PSNR, Entropy), and the complete desktop application user manual.
 
 ---
 
-## 2. Quick Start & Launching
+# PART I: MATHEMATICAL & THEORETICAL FOUNDATION (SAVE ALGORITHM)
+
+## 1. Overview of Spectrum-Aided Vision Enhancer (SAVE)
+The **Spectrum-Aided Vision Enhancer (SAVE)** algorithm transforms a standard White-Light Image (WLI) captured from an RGB camera or endoscope into:
+1. A reconstructed **Hyperspectral Image (HSI)** across wavelengths from **380 nm to 780 nm** (1 nm spectral resolution).
+2. A simulated **Narrow Band Imaging (NBI)** image (similar to Olympus NBI and Video Capsule Endoscopy - VCE).
+
+---
+
+## 2. sRGB to CIE 1931 XYZ Color Space Conversion
+
+### 2.1 Gamma Linearization
+Raw sRGB pixel channel values ($R_{\text{sRGB}}, G_{\text{sRGB}}, B_{\text{sRGB}} \in [0, 255]$) are normalized to $[0, 1]$ and linearized using the inverse gamma function:
+
+$$f(n) = \begin{cases} \left( \frac{n + 0.055}{1.055} \right)^{2.4}, & n > 0.04045 \\ \frac{n}{12.92}, & n \le 0.04045 \end{cases} \tag{4}$$
+
+### 2.2 Tristimulus Transformation
+Linearized sRGB values are converted to CIE 1931 XYZ tristimulus values ($XYZ_{\text{camera}}$):
+
+$$\begin{bmatrix} X \\ Y \\ Z \end{bmatrix} = [M_A] [T] \begin{bmatrix} f(R_{\text{sRGB}}) \\ f(G_{\text{sRGB}}) \\ f(B_{\text{sRGB}}) \end{bmatrix} \times 100, \quad 0 \le R_{\text{sRGB}}, G_{\text{sRGB}}, B_{\text{sRGB}} \le 1 \tag{1}$$
+
+where the transformation matrix $[T]$ is:
+
+$$[T] = \begin{bmatrix} 0.4104 & 0.3576 & 0.1805 \\ 0.2126 & 0.7152 & 0.0722 \\ 0.0193 & 0.1192 & 0.9505 \end{bmatrix} \tag{2}$$
+
+and the adaptation matrix $[M_A]$ accounts for reference white balance calibration:
+
+$$[M_A] = \begin{bmatrix} X_{SW} / X_{CW} & 0 & 0 \\ 0 & Y_{SW} / Y_{CW} & 0 \\ 0 & 0 & Z_{SW} / Z_{CW} \end{bmatrix} \tag{3}$$
+
+---
+
+## 3. Spectrophotometer Integration & Spectral XYZ Conversion
+
+Given the light source spectrum $S(\lambda)$ and CIE color matching functions $\bar{x}(\lambda), \bar{y}(\lambda), \bar{z}(\lambda)$ across wavelengths $\lambda \in [400\text{nm}, 700\text{nm}]$:
+
+$$X = k \int_{400\text{nm}}^{700\text{nm}} S(\lambda) R(\lambda) \bar{x}(\lambda) d\lambda \tag{5}$$
+
+$$Y = k \int_{400\text{nm}}^{700\text{nm}} S(\lambda) R(\lambda) \bar{y}(\lambda) d\lambda \tag{6}$$
+
+$$Z = k \int_{400\text{nm}}^{700\text{nm}} S(\lambda) R(\lambda) \bar{z}(\lambda) d\lambda \tag{7}$$
+
+where the normalization factor $k$ is defined as:
+
+$$k = \frac{100}{\int_{400\text{nm}}^{700\text{nm}} S(\lambda) \bar{y}(\lambda) d\lambda} \tag{8}$$
+
+---
+
+## 4. Color Correlation & Error Correction
+
+To correlate spectrophotometer spectral values ($XYZ_{\text{Spectrum}}$) with camera values ($V$):
+
+$$[C] = [XYZ_{\text{Spectrum}}] \times \text{pinv}([V]) \tag{9}$$
+
+$$[XYZ_{\text{Correct}}] = [C] \times [V] \tag{10}$$
+
+### 4.1 Non-Linearity & Dark Current Modification
+To account for non-linear response, dark current noise, and color distortion:
+
+$$V_{\text{Non-linear}} = \begin{bmatrix} X^3 & Y^3 & Z^3 & X^2 & Y^2 & Z^2 & X & Y & Z & 1 \end{bmatrix}^T \tag{11}$$
+
+$$V_{\text{Dark}} = [a] \tag{12}$$
+
+$$V_{\text{Color}} = \begin{bmatrix} XYZ & XY & XZ & YZ & X & Y & Z \end{bmatrix}^T \tag{13}$$
+
+$$V = \begin{bmatrix} X^3 & Y^3 & Z^3 \\ X^2 Y & X^2 Z & Y^2 Z \\ X Y^2 & X Z^2 & Y Z^2 \\ X Y Z & X^2 & Y^2 & Z^2 \\ X Y & X Z & Y Z & X & Y & Z & a \end{bmatrix}^T \tag{14}$$
+
+---
+
+## 5. CIE Lab & CIEDE 2000 Color Difference Metrics
+
+$XYZ_{\text{Correct}}$ values are transformed to CIE $L^*a^*b^*$ color space:
+
+$$L^* = 116 f\left(\frac{Y}{Y_n}\right) - 16 \tag{15}$$
+
+$$a^* = 500 \left[ f\left(\frac{X}{X_n}\right) - f\left(\frac{Y}{Y_n}\right) \right]$$
+
+$$b^* = 200 \left[ f\left(\frac{Y}{Y_n}\right) - f\left(\frac{Z}{Z_n}\right) \right]$$
+
+where:
+
+$$f(n) = \begin{cases} n^{1/3}, & n > 0.008856 \\ 7.787 n + 0.137931, & \text{otherwise} \end{cases} \tag{16}$$
+
+---
+
+## 6. Principal Component Analysis (PCA) & Spectral Reconstruction
+
+1. The reflectance matrix $(R(\lambda))_{401 \times 24}$ is constructed for 24 Macbeth Color Checker blocks across 401 wavelengths ($380\text{nm} - 780\text{nm}$).
+2. Eigenvector basis matrix $(E)_{12 \times 401}$ is derived using PCA.
+3. The 6 most significant principal components account for **99.64% of total variance**.
+4. Corresponding eigenvalues matrix $[\alpha]_{12 \times 24}$ is computed via:
+
+$$[\alpha]^T = [R(\lambda)]^T \text{pinv}([E]) \tag{17}$$
+
+5. The transformation matrix $[M]$ is derived via multivariate regression:
+
+$$[M] = [\text{Score}] \times \text{pinv}([V_{\text{Color}}]) \tag{18}$$
+
+6. Reconstructed analog hyperspectral spectrum $[S_{\text{Spectrum}}]_{380-780\text{nm}}$ is synthesized via:
+
+$$[S_{\text{Spectrum}}]_{380-780\text{nm}} = [EV] [M] [V_{\text{Color}}] \tag{19}$$
+
+---
+
+## 7. Narrow Band Imaging (NBI) & VCE Spectrum Calibration
+
+NBI enhances diagnostic mucosal detail using specific light absorption wavelengths:
+- **Blue Band (415 nm):** Peak hemoglobin light absorption for superficial mucosal capillary networks.
+- **Green Band (540 nm):** Submucosal blood vessel visualization.
+- Additional spectrum bands at **600 nm, 700 nm, and 780 nm**.
+
+Lighting spectrum optimization between Olympus NBI and Video Capsule Endoscopy (VCE) utilizes the Cauchy-Lorentz visiting distribution:
+
+$$f(x; x_0, \gamma) = \frac{1}{\pi \gamma \left[ 1 + \left(\frac{x - x_0}{\gamma}\right)^2 \right]} = \frac{1}{\pi} \left[ \frac{\gamma}{(x - x_0)^2 + \gamma^2} \right] \tag{20}$$
+
+---
+
+## 8. Quantitative Evaluation Metrics & Benchmark Performance
+
+| Evaluation Metric | Olympus Endoscope | Video Capsule Endoscopy (VCE) | Significance |
+| :--- | :--- | :--- | :--- |
+| **SSIM (Structural Similarity)** | **93.992%** (Peak: 94.88%) | **90.680%** (Peak: 96.65%) | High structural accuracy of reconstructed NBI imagery |
+| **PSNR (Peak Signal-to-Noise)** | **27.675 dB** (Peak: 28.02 dB) | **27.931 dB** (Peak: 28.51 dB) | High fidelity & low signal distortion |
+| **Entropy Difference** | **0.37%** (0.03% baseline) | **1.17%** | Minimal texture disorder and preserved spatial information |
+| **Mean Color Error (RMSE)** | **0.056** | **0.056** | Negligible chromatic disparity across 24 color blocks |
+| **Chromatic Aberration Error** | **0.63** (reduced from 10.76) | **0.63** | 94% reduction in chromatic aberration after calibration |
+
+### Major Advantages of SAVE Modality:
+- 🌟 **Enhanced Image Contrast** for micro-vascular inspection.
+- 🎯 **Accurate Pathological Diagnoses** without physical optical filter changes.
+- 🩺 **Early Pathological Detection** of early-stage lesions.
+- 💉 **Reduced Invasive Procedures**.
+- ⏱️ **Time-Efficient Diagnosis**.
+
+---
+
+# PART II: SYSTEM OPERATIONAL USER MANUAL
+
+## 9. System Setup & Installation
 
 ### On Windows
-1. Double-click `HyperspectralImaging.exe` or run `Launch_App.bat`.
-2. A desktop shortcut named **Hyperspectral Imaging System** will be automatically created on your Desktop for subsequent launches.
+1. Double-click `HyperspectralImaging.exe` in `App/exe/` or run `App/ISS/Launch_App.bat`.
 
-### On Raspberry Pi / Linux
-1. Open a terminal in the application folder.
-2. Install the necessary dependencies if running for the first time:
+### On Linux / Raspberry Pi
+1. Install dependencies:
    ```bash
    sudo apt update
    sudo apt install -y python3-pyqt6 python3-opencv python3-numpy python3-pandas python3-matplotlib python3-sklearn
    ```
-3. Give execution permissions to the launcher script:
+2. Run launcher:
    ```bash
-   chmod +x Launch_App.sh
+   chmod +x App/ISS/Launch_App.sh
+   ./App/ISS/Launch_App.sh
    ```
-4. Double-click `Launch_App.sh` and select **Execute**, or run it from the terminal:
-   ```bash
-   ./Launch_App.sh
-   ```
-   *Note: This script automatically creates a **Hyperspectral Imaging** shortcut launcher on your Raspberry Pi desktop.*
 
 ---
 
-## 3. User Interface Layout
+## 10. User Interface Layout & Controls
 
-The interface is divided into two primary sections: the **Left Control Panel** (Configuration) and the **Right Display Panel** (Visualization & Actions).
-
-```
+```text
  _______________________________________________________________________________
 |  [LOGO]                   |                                                   |
 |                           |                  VISUALIZATION                    |
@@ -56,89 +180,22 @@ The interface is divided into two primary sections: the **Left Control Panel** (
 |  Sample No: [ 1 ]         |___________________________________________________|
 ```
 
-### A. Left Control Panel
-*   **Gain Settings:** 
-    *   Adjusts the multiplication gain factor of the hyperspectral projection (from `1.0x` to `50.0x`).
-    *   Move the slider or type the value manually in the text box (e.g., `2.5x`) to change the brightness of the processed spectral bands.
-*   **Band Settings:**
-    *   Configure up to 4 spectral band filters (Min/Max ranges from `380nm` to `780nm`).
-    *   Click the **▲** and **▼** arrows to fine-tune the wavelength bounds, or type values directly.
-    *   Click **Clear Bands** to view the raw RGB input.
-*   **Sample Settings:**
-    *   Input the **Sample No.** (e.g. `1`, `2`, `104B`). This number is used to automatically name the folder where data is saved.
-
-### B. Right Display Panel
-*   **Visualization Canvas:** 
-    *   Displays the real-time live feed from the camera.
-    *   Switches automatically to a side-by-side **Split View** (Original vs. Processed) when an image is captured, uploaded, or during video replay.
-*   **Thumbnail Strip:**
-    *   Appears only in **Upload Mode**. Allows you to cycle through multiple uploaded images by clicking their thumbnail.
-*   **Bottom Action Bar:**
-    *   **Photo/Video Mode Buttons:** Toggles the operational mode of the system.
-    *   **Upload Image:** Select offline image files (`.png`, `.jpg`, `.jpeg`) to process them.
-    *   **Resume Live:** Closes static captures/replays and returns to the real-time camera stream.
-    *   **Capture / Record:** Captures a high-resolution snapshot or begins recording processed frames.
-    *   **Save:** Manually saves currently frozen images or batch processes.
+### Controls Summary:
+- **Gain Settings (1.0x - 50.0x):** Controls multiplication gain factor of spectral projection.
+- **Band Settings (380nm - 780nm):** Min/Max wavelength bounds for 4 spectral filters.
+- **Sample Settings:** Auto-names session directory inside `HyperspectralImaging_Data`.
+- **Photo / Video / Upload Modes:** Switches live capture, recording replay, or static image batch processing.
 
 ---
 
-## 4. Operation Guide
+## 11. Saved Data Structure
 
-### A. Live Streaming & Real-time Analysis
-1. Turn on the camera. The app will search for active cameras and load the stream.
-2. If no camera is connected, the app runs in **Simulation Mode** (a moving mockup of tissue cells).
-3. Adjust the **Gain** and **Band Ranges** on the left. The live processed canvas updates dynamically.
+Exported output sessions are saved into `Output/HyperspectralImaging_Data/`:
 
-### B. Photo Mode (Capturing & Exporting)
-1. Ensure the mode toggle is set to **Photo**.
-2. Click **Capture**.
-3. The camera pauses, and the display switches to a split view of the **Original** and **Processed** image.
-4. An auto-save folder is generated. A dialog box pops up saying:
-   *   **OK:** Keeps the files in the default directory (`Desktop/HyperspectralImaging_Data`).
-   *   **Save to Custom Location:** Prompts you to pick another folder (e.g. a USB flash drive) to copy the session results.
-5. Click **Resume Live** to start streaming again.
-
-### C. Video Mode (Recording & Replay)
-1. Click the **Video** mode button.
-2. Click **Record**. The status bar displays `"Recording video..."`.
-3. Click **Stop** to finish recording. The camera pauses.
-4. The system automatically launches a **Video Replay Loop** showing a split-screen preview of the recorded original and processed videos.
-5. Click **Save** to permanently save the videos.
-6. Click **Resume Live** to restart the camera.
-
-### D. Offline Upload Mode
-1. Click **Upload Image**. The live feed will pause.
-2. Select one or more images from your local drive.
-3. Click the thumbnail of any image in the strip to load it. 
-4. Adjust the **Gain** and **Band Settings** to run the processing algorithm on the static image.
-5. Click **Save** to write the original and processed images to a session folder.
-6. Click **Resume Live** to return to the live camera feed.
-
----
-
-## 5. Saved Data Structure
-
-Saved data is organized inside the `HyperspectralImaging_Data` folder (located on your Desktop). Inside, a new directory is created for each capture session:
-
-`HyperspectralImaging_Data/sample[SampleNo]_[YYYYMMDD_HHMMSS]/`
-
-### Exported Files:
-*   **For Photos:**
-    *   `original.png` (Raw RGB capture)
-    *   `processed.png` (Spectral reconstructed image)
-*   **For Videos:**
-    *   `original_video.avi` (Raw recorded video)
-    *   `processed_video.avi` (Hyperspectral processed video)
-*   **For Uploaded Images:**
-    *   `original_1.png`, `processed_1.png`... (Batch results)
-
----
-
-## 6. Troubleshooting & Warnings
-
-*   **Low Output Warning:** If you set a band range in the UV/Blue border (`320nm - 420nm`), the status bar will warn you: `Band range 320-420nm may produce low output — try 420nm and above`.
-*   **Missing weight.npz / cr_weights:** The application checks for these mathematical calibration files on startup. If you see a warning dialog, make sure these files are located inside the folder with the application executable.
-*   **Camera Connection Issues:** If the camera feed fails to load, verify that:
-    1. The camera is plugged in securely.
-    2. No other program is currently using the camera.
-    3. On Raspberry Pi, make sure you ran the script via `./Launch_App.sh`.
+```text
+Output/HyperspectralImaging_Data/sample[SampleNo]_[YYYYMMDD_HHMMSS]/
+├── original.png            # Raw RGB spatial image
+├── processed.png           # Reconstructed hyperspectral image
+├── original_video.avi      # Raw recorded video stream
+└── processed_video.avi     # Reconstructed spectral video stream
+```
