@@ -41,10 +41,7 @@ Hyperspectral-Imaging/
 │   │   └── Download_App_Link.md
 │   ├── ISS/
 │   │   ├── setup.iss
-│   │   ├── Launch_App.bat
-│   │   ├── Launch_App.sh
 │   │   ├── README.md
-│   │   ├── Launch_App_Instructions.md
 │   │   ├── Download_Launch_Sh_Link.md
 │   │   ├── Download_Launch_Bat_Link.md
 │   │   └── Download_Setup_Iss_Link.md
@@ -57,11 +54,11 @@ Hyperspectral-Imaging/
 │           ├── sanjivani.png
 │           ├── weight.npz
 │           ├── cr_weights/
-│           ├── HyperspectralImaging.spec
-│           └── HyperspectralImaging_Data/
+│           └── HyperspectralImaging.spec
 │
 ├── Output/
 │   ├── Output_Images/
+│   ├── HyperspectralImaging_Data/
 │   └── Readme.md
 │
 ├── Evaluation/
