@@ -2,12 +2,6 @@
 
 Repository: [SMARTLAB-SU/Hyperspectral-Imaging](https://github.com/SMARTLAB-SU/Hyperspectral-Imaging)
 
-## 📊 Kaggle Datasets
-
-- 🌿 **[Plant Disease Detection Kaggle Dataset](https://www.kaggle.com/datasets/vedikapangavhane/plant-disease-detection-kaggle?select=valid)**
-- ⚖️ **[Balanced Dataset](https://www.kaggle.com/datasets/vedikapangavhane/balanced-dataset)**
-- ✂️ **[Splitted Dataset](https://www.kaggle.com/datasets/vedikapangavhane/splitted-dataset)**
-
 ## 📥 Download & Launch Guide
 
 - 🔗 **[Click Here to Download & Run Launch_App.bat (Google Drive)](https://drive.google.com/file/d/15TcDZuNGD3Cu81OjIz_G94IX02aJqkjK/view?usp=drive_link)**
